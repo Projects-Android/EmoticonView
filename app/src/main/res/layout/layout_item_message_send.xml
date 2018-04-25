@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/iv_item_message_user_avatar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/ic_avatar_default"/>
+
+    <TextView
+        android:id="@+id/tv_item_message_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/iv_item_message_user_avatar"
+        android:layout_toStartOf="@id/iv_item_message_user_avatar"
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
+        android:textSize="10sp"
+        android:textColor="#666666"
+        android:text="User Name"/>
+
+    <TextView
+        android:id="@+id/tv_item_message_content_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="200dp"
+        android:gravity="center_vertical"
+        android:background="@drawable/ic_item_bubble_send"
+        android:layout_toLeftOf="@id/iv_item_message_user_avatar"
+        android:layout_toStartOf="@id/iv_item_message_user_avatar"
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_below="@id/tv_item_message_user_name"
+        android:layout_marginTop="3dp"
+        android:textSize="14sp"
+        android:textColor="#333333"/>
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/iv_item_message_content_pic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="200dp"
+        android:layout_toLeftOf="@id/iv_item_message_user_avatar"
+        android:layout_toStartOf="@id/iv_item_message_user_avatar"
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_below="@id/tv_item_message_user_name"
+        android:layout_marginTop="3dp" />
+</RelativeLayout>

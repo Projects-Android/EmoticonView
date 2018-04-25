@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="padding_emoticon_group_button">8dp</dimen>
+
+    <dimen name="item_decoration_emotion">10dp</dimen>
+    <dimen name="item_decoration_emotion_pic">20dp</dimen>
+
+    <dimen name="item_size_emoji">30dp</dimen>
+    <dimen name="item_size_pic">60dp</dimen>
+
+    <dimen name="size_40">40dp</dimen>
+    <dimen name="size_180">200dp</dimen>
+
+    <dimen name="font_size_normal">15dp</dimen>
+</resources>

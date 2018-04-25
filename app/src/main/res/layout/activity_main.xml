@@ -1,0 +1,65 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/rl_input_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#dcdcdc" />
+
+        <com.ev.library.view.EmoticonEditText
+            android:id="@+id/eet_main"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:layout_toLeftOf="@+id/btn_main_send"
+            android:gravity="center_vertical"
+            android:background="@drawable/shape_bg_input"
+            android:textSize="13sp"
+            android:textColor="#333333"/>
+
+        <ImageButton
+            android:id="@+id/btn_main_send"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/selector_btn_send"
+            android:scaleType="fitCenter"
+            android:background="@null"/>
+
+        <View
+            android:id="@+id/view_divider_main"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="8dp"
+            android:background="#dcdcdc"
+            android:layout_below="@id/eet_main" />
+
+        <com.ev.library.view.EmoticonView
+            android:id="@+id/ev_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_below="@id/view_divider_main"></com.ev.library.view.EmoticonView>
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/rl_input_area"
+        android:overScrollMode="never"
+        android:scrollbars="none"></android.support.v7.widget.RecyclerView>
+</RelativeLayout>

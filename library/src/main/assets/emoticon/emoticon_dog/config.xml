@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<smileys>
+
+  <group id="emoticon_dog" name="dog" normal_img="dog_normal" selected_img="dog_selected" type="PIC" ext="gif" thumb_ext="png" order="3">
+	<!-- all tips are the same as cat group, users can modify them. -->
+   <smiley id="00" filename="00" thumbnail="00" shortcuts="" 	>
+    	<tip>
+    		<def>嗯</def>
+    		<cn>嗯</cn>
+    		<tw>嗯</tw>
+    		<en>OK</en>
+      </tip>
+    </smiley>
+     <smiley id="01" filename="01" thumbnail="01" shortcuts="" 	>
+    	<tip>
+    		<def>哼</def>
+    		<cn>哼</cn>
+    		<tw>哼</tw>
+    		<en>heng</en>
+      </tip>
+    </smiley>
+     <smiley id="02" filename="02" thumbnail="02" shortcuts="" 	>
+    	<tip>
+    		<def>晚安</def>
+    		<cn>晚安</cn>
+    		<tw>晚安</tw>
+    		<en>Night</en>
+      </tip>
+    </smiley>
+     <smiley id="03" filename="03" thumbnail="03" shortcuts="" 	>
+    	<tip>
+    		<def>倒地</def>
+    		<cn>倒地</cn>
+    		<tw>倒地</tw>
+    		<en>lay</en>
+      </tip>
+    </smiley>
+     <smiley id="04" filename="04" thumbnail="04" shortcuts="" 	>
+    	<tip>
+    		<def>赞美</def>
+    		<cn>赞美</cn>
+    		<tw>赞美</tw>
+    		<en>cheer</en>
+      </tip>
+    </smiley>
+     <smiley id="05" filename="05" thumbnail="05" shortcuts="" 	>
+    	<tip>
+    		<def>扎心</def>
+    		<cn>扎心</cn>
+    		<tw>扎心</tw>
+    		<en>Heartache</en>
+      </tip>
+    </smiley>
+     <smiley id="06" filename="06" thumbnail="06" shortcuts="" 	>
+    	<tip>
+			<def>晚安</def>
+			<cn>晚安</cn>
+			<tw>晚安</tw>
+			<en>Night</en>
+      </tip>
+    </smiley>
+     <smiley id="07" filename="07" thumbnail="07" shortcuts="" 	>
+    	<tip>
+    		<def>你走</def>
+    		<cn>你走</cn>
+    		<tw>你走</tw>
+    		<en>go out</en>
+      </tip>
+    </smiley>
+     <smiley id="08" filename="08" thumbnail="08" shortcuts="" 	>
+    	<tip>
+    		<def>谢谢</def>
+    		<cn>谢谢</cn>
+    		<tw>谢谢</tw>
+    		<en>thanks</en>
+      </tip>
+    </smiley>
+     <smiley id="09" filename="09" thumbnail="09" shortcuts="" 	>
+    	<tip>
+    		<def>吐血</def>
+    		<cn>吐血</cn>
+    		<tw>吐血</tw>
+    		<en>blooding</en>
+      </tip>
+    </smiley>
+    <smiley id="10" filename="10" thumbnail="10" shortcuts="" 	>
+    	<tip>
+    		<def>摇头</def>
+    		<cn>摇头</cn>
+    		<tw>摇头</tw>
+    		<en>shake head</en>
+      </tip>
+    </smiley>
+    <smiley id="11" filename="11" thumbnail="11" shortcuts="" 	>
+    	<tip>
+    		<def>比心</def>
+    		<cn>比心</cn>
+    		<tw>比心</tw>
+    		<en>love you</en>
+      </tip>
+    </smiley>
+    <smiley id="12" filename="12" thumbnail="12" shortcuts="" 	>
+    	<tip>
+    		<def>抱抱</def>
+    		<cn>抱抱</cn>
+    		<tw>抱抱</tw>
+    		<en>hug</en>
+      </tip>
+    </smiley>
+    <smiley id="13" filename="13" thumbnail="13" shortcuts="" 	>
+    	<tip>
+    		<def>好的</def>
+    		<cn>好的</cn>
+    		<tw>好的</tw>
+    		<en>ok</en>
+      </tip>
+    </smiley>
+    <smiley id="14" filename="14" thumbnail="14" shortcuts="" 	>
+    	<tip>
+    		<def>惊讶</def>
+    		<cn>惊讶</cn>
+    		<tw>惊讶</tw>
+    		<en>surprised</en>
+      </tip>
+    </smiley>
+    <smiley id="15" filename="15" thumbnail="15" shortcuts="" 	>
+    	<tip>
+    		<def>哈哈哈</def>
+    		<cn>哈哈哈</cn>
+    		<tw>哈哈哈</tw>
+    		<en>laugh</en>
+      </tip>
+	</smiley>
+  </group>
+
+</smileys>

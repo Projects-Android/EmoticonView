@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/size_180">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_group_page"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_180"
+        android:overScrollMode="never"
+        android:scrollbars="none"/>
+
+    <TextView
+        android:id="@+id/tv_group_page_nohistory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/tip_emoticon_no_history"
+        android:textSize="@dimen/font_size_normal"
+        android:textColor="@color/font_color_nohistory"
+        android:visibility="gone" />
+</FrameLayout>

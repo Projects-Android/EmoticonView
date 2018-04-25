@@ -1,0 +1,6 @@
+<resources>
+    <string name="tip_emoticon_no_history">No history emotions.</string>
+    <string name="tip_unknown_emotions">Emotion</string>
+
+    <string name="error_get_emoticon_config">Emoticon configuration error.</string>
+</resources>
