@@ -2,10 +2,10 @@
 **A view to show emoticons. Support decoding and encoding emotions. The same as QQ.**
 It supports users to add emoticons manually. Emoticons can locate at assets and SDCard. 
 
-![image](/screenshot/Screenshot_emoticonview.png)
+![image](/screenshot/Screenshot_emoticonview_small.png)
 
 
-![image](/screenshot/Screenshot_emoticonview.gif)
+![image](/screenshot/Screenshot_emoticonview_small.gif)
 
 # How to use++
 **1、Define in xml**
