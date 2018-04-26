@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 
 import com.ev.library.bean.emotion.Emotion;
+import com.ev.library.utils.RecyclerViewTouchUtil;
 
 /**
  * Created by EV on 2018/4/23.
@@ -32,12 +33,16 @@ public interface IGroup {
     /**
      * get page view for emoticon
      * </p>
-     * @param pContext  the p context
-     * @param pPosition
-     * @param pWidth
-     * @return group page view
+     * @param pContext
+     * @param onItemClickListener
+     * @param onItemLongClickListener
+     * @param onItemLongPressUpListener
+     * @return
      */
-    View getEmoticonPage(Context pContext, int pPosition, int pWidth, View.OnClickListener pOnClickListener);
+    View getEmoticonPage(Context pContext,
+                         RecyclerViewTouchUtil.OnItemClickListener onItemClickListener,
+                         RecyclerViewTouchUtil.OnItemLongClickListener onItemLongClickListener,
+                         RecyclerViewTouchUtil.OnItemLongPressUpListener onItemLongPressUpListener);
 
     /**
      * notify group changed

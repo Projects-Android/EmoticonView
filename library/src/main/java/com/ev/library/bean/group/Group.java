@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
 import com.ev.library.R;
 import com.ev.library.bean.emotion.Emotion;
 import com.ev.library.strategy.files.IFileStrategy;
+import com.ev.library.utils.RecyclerViewTouchUtil;
 import com.ev.library.view.adapter.EmotionRecyclerViewAdapter;
 
 import java.util.HashMap;
@@ -133,13 +134,20 @@ public abstract class Group implements IGroup {
     }
 
     @Override
-    public View getEmoticonPage(Context pContext, int pPosition, int pWidth, View.OnClickListener onClickListener) {
+    public View getEmoticonPage(Context pContext,
+                                RecyclerViewTouchUtil.OnItemClickListener onItemClickListener,
+                                RecyclerViewTouchUtil.OnItemLongClickListener onItemLongClickListener,
+                                RecyclerViewTouchUtil.OnItemLongPressUpListener onItemLongPressUpListener) {
         final LayoutInflater inflater = LayoutInflater.from(pContext);
         FrameLayout view = (FrameLayout) inflater.inflate(R.layout.layout_group_page, null);
         RecyclerView recyclerView = view.findViewById(R.id.rv_group_page);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(pContext, getColumn());
         recyclerView.setLayoutManager(gridLayoutManager);
-        mAdapter = new EmotionRecyclerViewAdapter(pContext, this, onClickListener);
+        RecyclerViewTouchUtil recyclerViewTouchUtil = new RecyclerViewTouchUtil(pContext, recyclerView);
+        recyclerViewTouchUtil.setOnItemClickListener(onItemClickListener);
+        recyclerViewTouchUtil.setOnItemLongClickListener(onItemLongClickListener);
+        recyclerViewTouchUtil.setOnItemLongPressUpListener(onItemLongPressUpListener);
+        mAdapter = new EmotionRecyclerViewAdapter(pContext, this);
         recyclerView.setAdapter(mAdapter);
         return view;
     }

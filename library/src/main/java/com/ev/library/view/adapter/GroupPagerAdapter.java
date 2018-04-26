@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import com.ev.library.bean.group.Group;
 import com.ev.library.bean.group.RecentGroup;
+import com.ev.library.utils.RecyclerViewTouchUtil;
 
 import java.util.ArrayList;
 
@@ -18,17 +19,20 @@ public class GroupPagerAdapter extends PagerAdapter {
 
     private Context mContext;
     private ArrayList<Group> mGroupList;
-    private int mWidth;
-    private View.OnClickListener mOnItemClickListener;
+    private RecyclerViewTouchUtil.OnItemClickListener mOnItemClickListener;
+    private RecyclerViewTouchUtil.OnItemLongClickListener mOnItemLongClickListener;
+    private RecyclerViewTouchUtil.OnItemLongPressUpListener mOnItemLongPressUpListener;
 
     public GroupPagerAdapter(Context context,
                              ArrayList<Group> groupList,
-                             int width,
-                             View.OnClickListener onClickListener) {
+                             RecyclerViewTouchUtil.OnItemClickListener onItemClickListener,
+                             RecyclerViewTouchUtil.OnItemLongClickListener onItemLongClickListener,
+                             RecyclerViewTouchUtil.OnItemLongPressUpListener onItemLongPressUpListener) {
         mContext = context;
         mGroupList = groupList;
-        mWidth = width;
-        mOnItemClickListener = onClickListener;
+        mOnItemClickListener = onItemClickListener;
+        mOnItemLongClickListener = onItemLongClickListener;
+        mOnItemLongPressUpListener = onItemLongPressUpListener;
 
         if (null != mGroupList && !mGroupList.isEmpty() && mGroupList.get(0) instanceof RecentGroup) {
             ((RecentGroup) mGroupList.get(0)).refresh(mContext);
@@ -48,9 +52,12 @@ public class GroupPagerAdapter extends PagerAdapter {
     @Override
     public int getItemPosition(Object object) {
         if (object instanceof View) {
-            int tag = (int) ((View) object).getTag();
-            if (tag == RecentGroup.TAG_REFRESH_PAGE) {
-                return POSITION_NONE;
+            Object oTag = ((View) object).getTag();
+            if (oTag instanceof Integer) {
+                int tag = (int) oTag;
+                if (tag == RecentGroup.TAG_REFRESH_PAGE) {
+                    return POSITION_NONE;
+                }
             }
         }
         return super.getItemPosition(object);
@@ -58,7 +65,11 @@ public class GroupPagerAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        View view = mGroupList.get(position).getEmoticonPage(mContext, position, mWidth, mOnItemClickListener);
+        View view = mGroupList.get(position).getEmoticonPage(
+                mContext,
+                mOnItemClickListener,
+                mOnItemLongClickListener,
+                mOnItemLongPressUpListener);
         container.addView(view);
         return view;
     }

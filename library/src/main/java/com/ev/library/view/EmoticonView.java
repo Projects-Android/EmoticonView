@@ -24,6 +24,7 @@ import com.ev.library.bean.group.RecentGroup;
 import com.ev.library.eventbus.BusEvent;
 import com.ev.library.utils.EmoticonTypeUtils;
 import com.ev.library.utils.EmoticonImageLoader;
+import com.ev.library.utils.RecyclerViewTouchUtil;
 import com.ev.library.view.adapter.GroupPagerAdapter;
 
 import org.greenrobot.eventbus.EventBus;
@@ -59,6 +60,8 @@ public class EmoticonView extends LinearLayout implements ViewPager.OnPageChange
     private List<Bitmap> mToRecycleBitmap = new ArrayList<Bitmap>();
     private ArrayList<Group> mEmotionGroups;
     private IInputView mInputView;
+
+    private EmotionPreviewBubble mPreviewBubble;
 
     /**
      * public constructor
@@ -136,7 +139,11 @@ public class EmoticonView extends LinearLayout implements ViewPager.OnPageChange
             @Override
             public void onNext(ArrayList<Group> list) {
                 mEmotionGroups = list;
-                mPagerAdapter = new GroupPagerAdapter(mContext, list, pWidth, new OnEmotionClick());
+                mPagerAdapter = new GroupPagerAdapter(
+                        mContext,
+                        list, new OnEmotionClick(),
+                        new OnEmotionLongClick(),
+                        new OnEmotionLongPressUp());
                 mVpEmotion.setAdapter(mPagerAdapter);
                 EmoticonView.this.initGroupBtn(pWidth);
                 EmoticonView.this.setSelectGroupBtn(0);
@@ -257,9 +264,12 @@ public class EmoticonView extends LinearLayout implements ViewPager.OnPageChange
 
     }
 
-    private class OnEmotionClick implements OnClickListener {
+    /**
+     * Emotion single tap click event
+     */
+    private class OnEmotionClick implements RecyclerViewTouchUtil.OnItemClickListener {
         @Override
-        public void onClick(View v) {
+        public void onItemClick(int position, View v) {
             final Emotion emotion = (Emotion) v.getTag();
             if ((emotion instanceof PicEmotion)) {
                 if (mEmotionSendEvent != null) {
@@ -279,6 +289,44 @@ public class EmoticonView extends LinearLayout implements ViewPager.OnPageChange
         }
     }
 
+    /**
+     * Emotion long press event
+     */
+    private class OnEmotionLongClick implements RecyclerViewTouchUtil.OnItemLongClickListener {
+
+        @Override
+        public void onItemLongClick(int position, View itemView) {
+            final Emotion emotion = (Emotion) itemView.getTag();
+            if (null == emotion) {
+                return;
+            }
+
+            if (null == mPreviewBubble) {
+                mPreviewBubble = new EmotionPreviewBubble(mContext);
+            }
+
+            if (mPreviewBubble.isShowing()) {
+                mPreviewBubble.dismiss();
+            }
+
+            mPreviewBubble.showEmotionPreview(itemView, emotion);
+        }
+    }
+
+    private class OnEmotionLongPressUp implements RecyclerViewTouchUtil.OnItemLongPressUpListener {
+
+        @Override
+        public void onItemLongPressUp() {
+            if (null != mPreviewBubble && mPreviewBubble.isShowing()) {
+                mPreviewBubble.dismiss();
+            }
+        }
+    }
+
+    /**
+     * EventBus message receiver
+     * @param event
+     */
     @Subscribe
     public void onBusEventReceived(BusEvent event) {
         if (null != event) {

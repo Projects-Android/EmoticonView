@@ -21,16 +21,14 @@ public class EmotionRecyclerViewAdapter extends RecyclerView.Adapter<EmotionRecy
     private Context mContext;
     private IGroup mGroup;
     private LayoutInflater mInflater;
-    private View.OnClickListener mOnClickListener;
 
     private final int EMOTION_ITEM_TYPE_EMOJI = 0x01;
     private final int EMOTION_ITEM_TYPE_PIC = 0x02;
 
-    public EmotionRecyclerViewAdapter(Context context, IGroup iGroup, View.OnClickListener onClickListener) {
+    public EmotionRecyclerViewAdapter(Context context, IGroup iGroup) {
         this.mContext = context;
         this.mGroup = iGroup;
         this.mInflater = LayoutInflater.from(mContext);
-        this.mOnClickListener = onClickListener;
     }
 
     @Override
@@ -56,7 +54,6 @@ public class EmotionRecyclerViewAdapter extends RecyclerView.Adapter<EmotionRecy
         }
 
         holder.mItemView.setTag(emotion);
-        holder.mItemView.setOnClickListener(mOnClickListener);
     }
 
     @Override

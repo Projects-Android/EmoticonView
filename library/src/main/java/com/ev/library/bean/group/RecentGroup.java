@@ -9,6 +9,7 @@ import com.ev.library.RecentEmotionsManager;
 import com.ev.library.R;
 import com.ev.library.bean.emotion.Emotion;
 import com.ev.library.strategy.files.IFileStrategy;
+import com.ev.library.utils.RecyclerViewTouchUtil;
 
 /**
  * group for recent use
@@ -35,9 +36,12 @@ public class RecentGroup extends PicGroup {
     }
 
     @Override
-    public View getEmoticonPage(Context pContext, int pPosition, int pWidth, View.OnClickListener onClickListener) {
+    public View getEmoticonPage(Context pContext,
+                                RecyclerViewTouchUtil.OnItemClickListener onItemClickListener,
+                                RecyclerViewTouchUtil.OnItemLongClickListener onItemLongClickListener,
+                                RecyclerViewTouchUtil.OnItemLongPressUpListener onItemLongPressUpListener) {
         if (getEmotionTotal() > 0) {
-            return super.getEmoticonPage(pContext, pPosition, pWidth, onClickListener);
+            return super.getEmoticonPage(pContext, onItemClickListener, onItemLongClickListener, onItemLongPressUpListener);
         } else {
             final LayoutInflater inflater = LayoutInflater.from(pContext);
             FrameLayout view = (FrameLayout) inflater.inflate(R.layout.layout_group_page, null);

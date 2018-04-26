@@ -9,6 +9,7 @@
     <dimen name="item_size_pic">60dp</dimen>
 
     <dimen name="size_40">40dp</dimen>
+    <dimen name="size_70">70dp</dimen>
     <dimen name="size_180">200dp</dimen>
 
     <dimen name="font_size_normal">15dp</dimen>
