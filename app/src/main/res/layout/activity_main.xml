@@ -55,11 +55,11 @@
             android:layout_below="@id/view_divider_main"></com.ev.library.view.EmoticonView>
     </RelativeLayout>
 
-    <android.support.v7.widget.RecyclerView
+    <com.ev.library.sticker.StickerRecyclerView
         android:id="@+id/rv_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/rl_input_area"
         android:overScrollMode="never"
-        android:scrollbars="none"></android.support.v7.widget.RecyclerView>
+        android:scrollbars="none"></com.ev.library.sticker.StickerRecyclerView>
 </RelativeLayout>

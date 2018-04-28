@@ -1,9 +1,11 @@
 package com.ev.emoticonview.bean;
 
+import com.ev.library.sticker.StickerMessage;
+
 /**
  * Created by EV on 2018/4/25.
  */
-public class Message {
+public class Message extends StickerMessage {
 
     public static final int TYPE_MESSAGE_CONTENT_TEXT = 0x01;
     public static final int TYPE_MESSAGE_CONTENT_IMG = 0x02;

@@ -137,7 +137,8 @@ public abstract class Group implements IGroup {
     public View getEmoticonPage(Context pContext,
                                 RecyclerViewTouchUtil.OnItemClickListener onItemClickListener,
                                 RecyclerViewTouchUtil.OnItemLongClickListener onItemLongClickListener,
-                                RecyclerViewTouchUtil.OnItemLongPressUpListener onItemLongPressUpListener) {
+                                RecyclerViewTouchUtil.OnItemLongPressUpListener onItemLongPressUpListener,
+                                RecyclerViewTouchUtil.OnStickerEmotionMoveListener onStickerEmotionMoveListener) {
         final LayoutInflater inflater = LayoutInflater.from(pContext);
         FrameLayout view = (FrameLayout) inflater.inflate(R.layout.layout_group_page, null);
         RecyclerView recyclerView = view.findViewById(R.id.rv_group_page);
@@ -147,6 +148,7 @@ public abstract class Group implements IGroup {
         recyclerViewTouchUtil.setOnItemClickListener(onItemClickListener);
         recyclerViewTouchUtil.setOnItemLongClickListener(onItemLongClickListener);
         recyclerViewTouchUtil.setOnItemLongPressUpListener(onItemLongPressUpListener);
+        recyclerViewTouchUtil.setOnStickerEmotionMoveListener(onStickerEmotionMoveListener);
         mAdapter = new EmotionRecyclerViewAdapter(pContext, this);
         recyclerView.setAdapter(mAdapter);
         return view;

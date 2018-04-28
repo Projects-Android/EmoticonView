@@ -5,9 +5,11 @@
     <dimen name="item_decoration_emotion">10dp</dimen>
     <dimen name="item_decoration_emotion_pic">20dp</dimen>
 
+    <dimen name="item_size_sticker_btn">16dp</dimen>
     <dimen name="item_size_emoji">30dp</dimen>
     <dimen name="item_size_pic">60dp</dimen>
 
+    <dimen name="size_8">8dp</dimen>
     <dimen name="size_40">40dp</dimen>
     <dimen name="size_70">70dp</dimen>
     <dimen name="size_180">200dp</dimen>

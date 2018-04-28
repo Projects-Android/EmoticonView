@@ -17,9 +17,13 @@ public class RecyclerViewTouchUtil {
     private OnItemClickListener mOnItemClickListener;
     private OnItemLongClickListener mOnItemLongClickListener;
     private OnItemLongPressUpListener mOnItemLongPressUpListener;
+    private OnStickerEmotionMoveListener mOnStickerEmotionMoveListener;
 
     private int mLastLongPressPosition;
     private boolean mOnLongPressMode;
+
+    private boolean mOnStickerDragMode = true;
+    private boolean mHandleTouchInDragMode;
 
     public RecyclerViewTouchUtil(Context context, RecyclerView recyclerView) {
         this.mContext = context;
@@ -46,7 +50,8 @@ public class RecyclerViewTouchUtil {
                 super.onLongPress(e);
 
                 if (null != mOnItemLongClickListener && null != mRecyclerView) {
-                    mOnLongPressMode = true;
+                    mOnLongPressMode = !mOnStickerDragMode;
+                    mHandleTouchInDragMode = mOnStickerDragMode;
                     View itemView = mRecyclerView.findChildViewUnder(e.getX(), e.getY());
                     if (null != itemView) {
                         mLastLongPressPosition = mRecyclerView.getChildLayoutPosition(itemView);
@@ -66,13 +71,18 @@ public class RecyclerViewTouchUtil {
                 switch (event.getActionMasked()) {
                     case MotionEvent.ACTION_UP:
                     case MotionEvent.ACTION_CANCEL:
-                        mOnLongPressMode = false;
                         if (null != mOnItemLongPressUpListener) {
                             mOnItemLongPressUpListener.onItemLongPressUp();
                         }
+                        if (null != mOnStickerEmotionMoveListener && mHandleTouchInDragMode) {
+                            mOnStickerEmotionMoveListener.onStickerEmotionMove(event);
+                        }
+
+                        mOnLongPressMode = false;
+                        mHandleTouchInDragMode = false;
                         break;
                     case MotionEvent.ACTION_MOVE:
-                        if (null != mOnItemClickListener && null != mRecyclerView && mOnLongPressMode) {
+                        if (null != mOnItemLongClickListener && null != mRecyclerView && mOnLongPressMode) {
                             mRecyclerView.requestDisallowInterceptTouchEvent(true);
                             View itemView = mRecyclerView.findChildViewUnder(event.getX(), event.getY());
                             if (null != itemView) {
@@ -82,12 +92,18 @@ public class RecyclerViewTouchUtil {
                                     mOnItemLongClickListener.onItemLongClick(mLastLongPressPosition, itemView);
                                 }
                             }
+                        } else if (null != mOnStickerEmotionMoveListener && mHandleTouchInDragMode) {
+                            mRecyclerView.requestDisallowInterceptTouchEvent(true);
+                            mOnStickerEmotionMoveListener.onStickerEmotionMove(event);
+                            if (null != mOnItemLongPressUpListener) {
+                                mOnItemLongPressUpListener.onItemLongPressUp();
+                            }
                         }
                         break;
                     default:
                         break;
                 }
-                return mOnLongPressMode;
+                return mOnLongPressMode || mHandleTouchInDragMode;
             }
         });
     }
@@ -104,6 +120,10 @@ public class RecyclerViewTouchUtil {
         this.mOnItemLongPressUpListener = onItemLongPressUpListener;
     }
 
+    public void setOnStickerEmotionMoveListener(OnStickerEmotionMoveListener onStickerEmotionMoveListener) {
+        this.mOnStickerEmotionMoveListener = onStickerEmotionMoveListener;
+    }
+
     public interface OnItemClickListener {
         void onItemClick(int position, View itemView);
     }
@@ -114,5 +134,9 @@ public class RecyclerViewTouchUtil {
 
     public interface OnItemLongPressUpListener {
         void onItemLongPressUp();
+    }
+
+    public interface OnStickerEmotionMoveListener {
+        void onStickerEmotionMove(MotionEvent event);
     }
 }

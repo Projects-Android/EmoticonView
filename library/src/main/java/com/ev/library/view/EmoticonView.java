@@ -8,10 +8,12 @@ import android.graphics.drawable.StateListDrawable;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.ev.library.EmoticonManager;
 import com.ev.library.RecentEmotionsManager;
@@ -22,6 +24,9 @@ import com.ev.library.bean.emotion.PicEmotion;
 import com.ev.library.bean.group.Group;
 import com.ev.library.bean.group.RecentGroup;
 import com.ev.library.eventbus.BusEvent;
+import com.ev.library.sticker.IStickLayout;
+import com.ev.library.sticker.PrepareToStickListener;
+import com.ev.library.sticker.StickerOutOfRangeException;
 import com.ev.library.utils.EmoticonTypeUtils;
 import com.ev.library.utils.EmoticonImageLoader;
 import com.ev.library.utils.RecyclerViewTouchUtil;
@@ -62,6 +67,8 @@ public class EmoticonView extends LinearLayout implements ViewPager.OnPageChange
     private IInputView mInputView;
 
     private EmotionPreviewBubble mPreviewBubble;
+
+    private IStickLayout mIStickLayout;
 
     /**
      * public constructor
@@ -143,7 +150,8 @@ public class EmoticonView extends LinearLayout implements ViewPager.OnPageChange
                         mContext,
                         list, new OnEmotionClick(),
                         new OnEmotionLongClick(),
-                        new OnEmotionLongPressUp());
+                        new OnEmotionLongPressUp(),
+                        new OnStickerEmotionMove());
                 mVpEmotion.setAdapter(mPagerAdapter);
                 EmoticonView.this.initGroupBtn(pWidth);
                 EmoticonView.this.setSelectGroupBtn(0);
@@ -159,6 +167,10 @@ public class EmoticonView extends LinearLayout implements ViewPager.OnPageChange
 
             }
         });
+    }
+
+    public void setStickLayout(IStickLayout iStickLayout) {
+        this.mIStickLayout = iStickLayout;
     }
 
     @Override
@@ -322,6 +334,33 @@ public class EmoticonView extends LinearLayout implements ViewPager.OnPageChange
             }
         }
     }
+
+    private class OnStickerEmotionMove implements RecyclerViewTouchUtil.OnStickerEmotionMoveListener {
+
+        @Override
+        public void onStickerEmotionMove(MotionEvent event) {
+            if (null != mPreviewBubble) {
+                mPreviewBubble.getStickerEmotionUtil(mPrepareToStickListener).handleMotionEvent(event);
+            }
+        }
+    }
+
+    private PrepareToStickListener mPrepareToStickListener = new PrepareToStickListener() {
+        @Override
+        public boolean prepareToStick(View stickerView, Emotion emotion) {
+            if (null != mIStickLayout) {
+                try {
+                    mIStickLayout.addSticker(stickerView, emotion);
+                    return true;
+                } catch (StickerOutOfRangeException e) {
+                    e.printStackTrace();
+                    Toast.makeText(mContext, "Can only stick nearby message!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            return false;
+        }
+    };
 
     /**
      * EventBus message receiver

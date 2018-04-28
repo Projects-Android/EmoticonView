@@ -42,7 +42,8 @@ public interface IGroup {
     View getEmoticonPage(Context pContext,
                          RecyclerViewTouchUtil.OnItemClickListener onItemClickListener,
                          RecyclerViewTouchUtil.OnItemLongClickListener onItemLongClickListener,
-                         RecyclerViewTouchUtil.OnItemLongPressUpListener onItemLongPressUpListener);
+                         RecyclerViewTouchUtil.OnItemLongPressUpListener onItemLongPressUpListener,
+                         RecyclerViewTouchUtil.OnStickerEmotionMoveListener onStickerEmotionMoveListener);
 
     /**
      * notify group changed

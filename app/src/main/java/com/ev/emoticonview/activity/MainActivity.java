@@ -12,6 +12,7 @@ import com.ev.emoticonview.R;
 import com.ev.emoticonview.adapter.MessageRecyclerViewAdapter;
 import com.ev.emoticonview.bean.Message;
 import com.ev.library.IEmotionSendEvent;
+import com.ev.library.sticker.StickerRecyclerView;
 import com.ev.library.utils.EmoticonTypeUtils;
 import com.ev.library.view.EmoticonEditText;
 import com.ev.library.view.EmoticonView;
@@ -25,7 +26,7 @@ public class MainActivity extends Activity {
     private EmoticonView mEvView;
     private ImageButton mBtnSend;
 
-    private RecyclerView mRvMain;
+    private StickerRecyclerView mRvMain;
     private MessageRecyclerViewAdapter mAdapter;
     private ArrayList<Message> mMessages;
 
@@ -51,6 +52,7 @@ public class MainActivity extends Activity {
             }
         });
 
+        mEvView.setStickLayout(mRvMain);
         mBtnSend.setOnClickListener(mOnClickListener);
     }
 

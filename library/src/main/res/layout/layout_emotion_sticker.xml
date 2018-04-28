@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/giv_emotion_sticker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_8"
+        android:layout_marginBottom="@dimen/size_8"
+        android:layout_marginRight="@dimen/item_size_sticker_btn"
+        android:layout_marginEnd="@dimen/item_size_sticker_btn"
+        android:layout_centerVertical="true"/>
+
+    <ImageView
+        android:id="@+id/iv_emotion_sticker_cancel"
+        android:layout_width="@dimen/item_size_sticker_btn"
+        android:layout_height="@dimen/item_size_sticker_btn"
+        android:layout_gravity="top|right|end"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_close"/>
+
+    <ImageView
+        android:id="@+id/iv_emotion_sticker_confirm"
+        android:layout_width="@dimen/item_size_sticker_btn"
+        android:layout_height="@dimen/item_size_sticker_btn"
+        android:layout_gravity="bottom|right|end"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_confirm"/>
+</FrameLayout>

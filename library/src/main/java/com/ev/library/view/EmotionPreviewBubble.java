@@ -12,7 +12,9 @@ import android.widget.PopupWindow;
 import com.ev.library.R;
 import com.ev.library.bean.emotion.Emotion;
 import com.ev.library.bean.emotion.PicEmotion;
+import com.ev.library.sticker.PrepareToStickListener;
 import com.ev.library.utils.EmoticonImageLoader;
+import com.ev.library.sticker.StickerEmotionUtil;
 
 import pl.droidsonroids.gif.GifImageView;
 
@@ -25,6 +27,8 @@ public class EmotionPreviewBubble extends PopupWindow {
     private Context mContext;
     private GifImageView mIvPicPreview;
     private ImageView mIvEmojiPreview;
+    private Emotion mEmotion;
+    private StickerEmotionUtil mStickerEmotionUtil;
 
     public EmotionPreviewBubble(Context context) {
         super(context);
@@ -55,6 +59,23 @@ public class EmotionPreviewBubble extends PopupWindow {
             mIvPicPreview.setVisibility(View.GONE);
         }
         showAsDropDown(parent, 0, -(height + parent.getMeasuredHeight()));
+        mEmotion = emotion;
     }
 
+    public StickerEmotionUtil getStickerEmotionUtil(PrepareToStickListener prepareToStickListener) {
+        if (null == mStickerEmotionUtil) {
+            mStickerEmotionUtil = new StickerEmotionUtil(mContext, prepareToStickListener);
+        }
+
+        if (mStickerEmotionUtil.shouldAddNew(mEmotion)) {
+            if (null != mEmotion) {
+                if (mEmotion instanceof PicEmotion) {
+                    mStickerEmotionUtil.addEmotionView(mIvPicPreview, mEmotion);
+                } else {
+                    mStickerEmotionUtil.addEmotionView(mIvEmojiPreview, mEmotion);
+                }
+            }
+        }
+        return mStickerEmotionUtil;
+    }
 }
