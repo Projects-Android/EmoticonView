@@ -108,6 +108,10 @@ public class RecyclerViewTouchUtil {
         });
     }
 
+    public void setOnStickMode(boolean onStickMode) {
+        this.mOnStickerDragMode = onStickMode;
+    }
+
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         this.mOnItemClickListener = onItemClickListener;
     }

@@ -40,14 +40,16 @@ public class RecentGroup extends PicGroup {
                                 RecyclerViewTouchUtil.OnItemClickListener onItemClickListener,
                                 RecyclerViewTouchUtil.OnItemLongClickListener onItemLongClickListener,
                                 RecyclerViewTouchUtil.OnItemLongPressUpListener onItemLongPressUpListener,
-                                RecyclerViewTouchUtil.OnStickerEmotionMoveListener onStickerEmotionMoveListener) {
+                                RecyclerViewTouchUtil.OnStickerEmotionMoveListener onStickerEmotionMoveListener,
+                                boolean onStickDragModev) {
         if (getEmotionTotal() > 0) {
             return super.getEmoticonPage(
                     pContext,
                     onItemClickListener,
                     onItemLongClickListener,
                     onItemLongPressUpListener,
-                    onStickerEmotionMoveListener);
+                    onStickerEmotionMoveListener,
+                    onStickDragModev);
         } else {
             final LayoutInflater inflater = LayoutInflater.from(pContext);
             FrameLayout view = (FrameLayout) inflater.inflate(R.layout.layout_group_page, null);

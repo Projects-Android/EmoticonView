@@ -10,9 +10,14 @@ import android.view.View;
 
 public class StickerUtils {
 
+    /**
+     * get global visible rect by location on screen
+     * @param stickerView
+     * @return
+     */
     public static Rect getGlobalVisibleRect(View stickerView) {
         Rect stickerRect = new Rect();
-        stickerView.getGlobalVisibleRect(stickerRect);
+        stickerView.getLocalVisibleRect(stickerRect);
         int[] location = new int[2];
         stickerView.getLocationOnScreen(location);
         stickerRect.left = location[0];

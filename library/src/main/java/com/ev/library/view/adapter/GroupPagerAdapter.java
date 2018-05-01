@@ -23,19 +23,22 @@ public class GroupPagerAdapter extends PagerAdapter {
     private RecyclerViewTouchUtil.OnItemLongClickListener mOnItemLongClickListener;
     private RecyclerViewTouchUtil.OnItemLongPressUpListener mOnItemLongPressUpListener;
     private RecyclerViewTouchUtil.OnStickerEmotionMoveListener mOnStickerEmotionMoveListener;
+    private boolean mOnStickDragMode;
 
     public GroupPagerAdapter(Context context,
                              ArrayList<Group> groupList,
                              RecyclerViewTouchUtil.OnItemClickListener onItemClickListener,
                              RecyclerViewTouchUtil.OnItemLongClickListener onItemLongClickListener,
                              RecyclerViewTouchUtil.OnItemLongPressUpListener onItemLongPressUpListener,
-                             RecyclerViewTouchUtil.OnStickerEmotionMoveListener onStickerEmotionMoveListener) {
+                             RecyclerViewTouchUtil.OnStickerEmotionMoveListener onStickerEmotionMoveListener,
+                             boolean onStickDragMode) {
         mContext = context;
         mGroupList = groupList;
         mOnItemClickListener = onItemClickListener;
         mOnItemLongClickListener = onItemLongClickListener;
         mOnItemLongPressUpListener = onItemLongPressUpListener;
         mOnStickerEmotionMoveListener = onStickerEmotionMoveListener;
+        mOnStickDragMode = onStickDragMode;
 
         if (null != mGroupList && !mGroupList.isEmpty() && mGroupList.get(0) instanceof RecentGroup) {
             ((RecentGroup) mGroupList.get(0)).refresh(mContext);
@@ -73,7 +76,8 @@ public class GroupPagerAdapter extends PagerAdapter {
                 mOnItemClickListener,
                 mOnItemLongClickListener,
                 mOnItemLongPressUpListener,
-                mOnStickerEmotionMoveListener);
+                mOnStickerEmotionMoveListener,
+                mOnStickDragMode);
         container.addView(view);
         return view;
     }

@@ -1,9 +1,7 @@
 package com.ev.emoticonview.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -12,8 +10,8 @@ import com.ev.emoticonview.R;
 import com.ev.emoticonview.bean.Message;
 import com.ev.library.EmoticonManager;
 import com.ev.library.sticker.IStickRecyclerViewAdapter;
+import com.ev.library.sticker.Sticker;
 import com.ev.library.sticker.StickerItemView;
-import com.ev.library.sticker.StickerMessage;
 import com.ev.library.utils.EmoticonImageLoader;
 
 import java.util.ArrayList;
@@ -61,7 +59,8 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
                 EmoticonImageLoader.getInstance().displayGif(url, holder.mIvContent);
             }
 
-            ArrayList<StickerMessage.Sticker> stickers = msg.getmStickers();
+            holder.mStickItemView.reset();
+            ArrayList<Sticker> stickers = msg.getmStickers();
             if (null != stickers && !stickers.isEmpty()) {
                 holder.mStickItemView.addStickers(stickers);
             }

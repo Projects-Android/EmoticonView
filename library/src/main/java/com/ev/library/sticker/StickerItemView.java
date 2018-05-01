@@ -24,14 +24,17 @@ import pl.droidsonroids.gif.GifImageView;
 public class StickerItemView extends FrameLayout implements IStickerItem {
 
     private Context mContext;
-    private ArrayList<StickerMessage.Sticker> mStickers = new ArrayList<>();
-    private StickerMessage.Sticker mSticker;
+    private ArrayList<Sticker> mStickers = new ArrayList<>();
+    private Sticker mSticker;
     private GifImageView mStickerView;
+
+    private boolean mResetMode = false;
 
     public StickerItemView(@NonNull Context context) {
         super(context);
 
         this.mContext = context;
+        this.mResetMode = false;
     }
 
     /**
@@ -43,9 +46,10 @@ public class StickerItemView extends FrameLayout implements IStickerItem {
     }
 
     @Override
-    public void addStickers(ArrayList<StickerMessage.Sticker> stickers) {
+    public void addStickers(ArrayList<Sticker> stickers) {
         mStickers.clear();
         mStickers.addAll(stickers);
+        addStickers();
         getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
@@ -60,10 +64,19 @@ public class StickerItemView extends FrameLayout implements IStickerItem {
         });
     }
 
+    @Override
+    public void reset() {
+        mResetMode = true;
+        invalidate();
+    }
+
     private void addStickers() {
         for (int i = 0; i < mStickers.size(); i ++) {
             mSticker = mStickers.get(i);
             ViewGroup.LayoutParams layoutParams = getLayoutParams();
+            if (null == layoutParams) {
+                return;
+            }
             layoutParams.width = (int) (getMeasuredWidth() * mSticker.getmWidthRate());
             layoutParams.height = (int) (getMeasuredHeight() * mSticker.getmHeightRate());
             setLayoutParams(layoutParams);
@@ -87,6 +100,7 @@ public class StickerItemView extends FrameLayout implements IStickerItem {
             int heightMeasureSpec = MeasureSpec.makeMeasureSpec(heightSize, heightMode);
             measure(widthMeasureSpec, heightMeasureSpec);
 
+            mResetMode = false;
             invalidate();
         }
     }
@@ -95,7 +109,7 @@ public class StickerItemView extends FrameLayout implements IStickerItem {
     protected void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
 
-        if (null != mStickerView) {
+        if (null != mStickerView && !mResetMode) {
             canvas.save();
             canvas.translate(mSticker.getmLeftRate() * canvas.getWidth(), mSticker.getmTopRate() * canvas.getHeight());
             mStickerView.draw(canvas);
@@ -107,5 +121,12 @@ public class StickerItemView extends FrameLayout implements IStickerItem {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
+        if (null != mStickerView && !mResetMode) {
+            canvas.save();
+            canvas.translate(mSticker.getmLeftRate() * canvas.getWidth(), mSticker.getmTopRate() * canvas.getHeight());
+            mStickerView.draw(canvas);
+            canvas.restore();
+        }
     }
 }

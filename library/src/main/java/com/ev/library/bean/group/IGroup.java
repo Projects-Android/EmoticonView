@@ -43,7 +43,8 @@ public interface IGroup {
                          RecyclerViewTouchUtil.OnItemClickListener onItemClickListener,
                          RecyclerViewTouchUtil.OnItemLongClickListener onItemLongClickListener,
                          RecyclerViewTouchUtil.OnItemLongPressUpListener onItemLongPressUpListener,
-                         RecyclerViewTouchUtil.OnStickerEmotionMoveListener onStickerEmotionMoveListener);
+                         RecyclerViewTouchUtil.OnStickerEmotionMoveListener onStickerEmotionMoveListener,
+                         boolean onStickDragMode);
 
     /**
      * notify group changed

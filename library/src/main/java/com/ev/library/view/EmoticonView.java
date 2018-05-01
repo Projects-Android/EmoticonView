@@ -151,7 +151,8 @@ public class EmoticonView extends LinearLayout implements ViewPager.OnPageChange
                         list, new OnEmotionClick(),
                         new OnEmotionLongClick(),
                         new OnEmotionLongPressUp(),
-                        new OnStickerEmotionMove());
+                        new OnStickerEmotionMove(),
+                        null != mIStickLayout);
                 mVpEmotion.setAdapter(mPagerAdapter);
                 EmoticonView.this.initGroupBtn(pWidth);
                 EmoticonView.this.setSelectGroupBtn(0);

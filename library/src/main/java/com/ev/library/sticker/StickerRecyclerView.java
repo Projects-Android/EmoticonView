@@ -89,15 +89,15 @@ public class StickerRecyclerView extends RecyclerView implements IStickLayout {
             if (adapter instanceof IStickRecyclerViewAdapter) {
                 StickerMessage stickerMessage = ((IStickRecyclerViewAdapter) adapter).getItemData(position);
                 if (null != stickerMessage) {
-                    ArrayList<StickerMessage.Sticker> stickers = stickerMessage.getmStickers();
+                    StickersManager stickers = stickerMessage.getmStickers();
                     if (null == stickers) {
-                        stickers = new ArrayList<>();
+                        stickers = new StickersManager();
                     }
 
                     Rect layoutRect = new Rect();
                     Rect stickerRect = StickerUtils.getGlobalVisibleRect(stickerView);
                     child.getGlobalVisibleRect(layoutRect);
-                    StickerMessage.Sticker sticker = new StickerMessage.Sticker(emotion, layoutRect, stickerRect);
+                    Sticker sticker = new Sticker(emotion, layoutRect, stickerRect);
                     stickers.add(sticker);
                     stickerMessage.setmStickers(stickers);
                     adapter.notifyItemChanged(position);

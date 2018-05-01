@@ -138,7 +138,8 @@ public abstract class Group implements IGroup {
                                 RecyclerViewTouchUtil.OnItemClickListener onItemClickListener,
                                 RecyclerViewTouchUtil.OnItemLongClickListener onItemLongClickListener,
                                 RecyclerViewTouchUtil.OnItemLongPressUpListener onItemLongPressUpListener,
-                                RecyclerViewTouchUtil.OnStickerEmotionMoveListener onStickerEmotionMoveListener) {
+                                RecyclerViewTouchUtil.OnStickerEmotionMoveListener onStickerEmotionMoveListener,
+                                boolean onStickDragMode) {
         final LayoutInflater inflater = LayoutInflater.from(pContext);
         FrameLayout view = (FrameLayout) inflater.inflate(R.layout.layout_group_page, null);
         RecyclerView recyclerView = view.findViewById(R.id.rv_group_page);
@@ -149,6 +150,7 @@ public abstract class Group implements IGroup {
         recyclerViewTouchUtil.setOnItemLongClickListener(onItemLongClickListener);
         recyclerViewTouchUtil.setOnItemLongPressUpListener(onItemLongPressUpListener);
         recyclerViewTouchUtil.setOnStickerEmotionMoveListener(onStickerEmotionMoveListener);
+        recyclerViewTouchUtil.setOnStickMode(onStickDragMode);
         mAdapter = new EmotionRecyclerViewAdapter(pContext, this);
         recyclerView.setAdapter(mAdapter);
         return view;

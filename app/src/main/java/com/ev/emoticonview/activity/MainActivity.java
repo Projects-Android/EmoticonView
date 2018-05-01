@@ -45,6 +45,7 @@ public class MainActivity extends Activity {
         mBtnSend = findViewById(R.id.btn_main_send);
         mRvMain = findViewById(R.id.rv_main);
 
+//        mEvView.setStickLayout(mRvMain);
         mInputView.post(new Runnable() {
             @Override
             public void run() {
@@ -52,7 +53,6 @@ public class MainActivity extends Activity {
             }
         });
 
-        mEvView.setStickLayout(mRvMain);
         mBtnSend.setOnClickListener(mOnClickListener);
     }
 

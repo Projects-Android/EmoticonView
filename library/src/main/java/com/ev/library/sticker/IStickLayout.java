@@ -5,9 +5,9 @@ import android.view.View;
 import com.ev.library.bean.emotion.Emotion;
 
 /**
+ * interface for stick layout
  * Created by EV on 2018/4/28.
  */
-
 public interface IStickLayout {
 
     /**
